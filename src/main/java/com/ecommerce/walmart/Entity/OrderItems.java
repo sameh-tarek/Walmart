@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
 
 @Entity
 @Data
@@ -19,6 +18,6 @@ public class OrderItems {
     private float price;
     @OneToOne
     private Order order;
-    @OneToMany
-    private List<Product> products;
+    @OneToOne
+    private Product products;
 }

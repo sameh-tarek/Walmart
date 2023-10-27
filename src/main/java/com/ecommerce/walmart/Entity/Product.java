@@ -21,8 +21,6 @@ public class Product {
     private int stockQuantity;
     @ManyToOne
     private Category category;
-    @OneToOne
-    private Seller seller;
     @ManyToMany
     private List<Image> images;
     @OneToMany

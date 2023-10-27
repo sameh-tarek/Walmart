@@ -17,8 +17,8 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Date date;
-    private int amount;
     private Status status;
+    private int amount;
     @ManyToOne
-    private Customer customer;
+    private User user;
 }

@@ -19,7 +19,7 @@ public class ShoppingCart {
     private int quantity;
     private Date dateAddedToCart;
     @OneToOne
-    private Customer customer;
+    private User customer;
     @OneToMany
     private List<Product> products;
 }

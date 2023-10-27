@@ -1,13 +1,12 @@
 package com.ecommerce.walmart.Entity;
 
 import com.ecommerce.walmart.Entity.enums.Role;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Entity
 @Data
@@ -23,5 +22,12 @@ public class User {
     private String password;
     private String email;
     private Role userType;
+    private String address;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Contact contact;
+    @OneToMany(mappedBy = "user")
+    private List<Order> orders;
+    @ManyToMany
+    private List<Product> favorites;
 
 }
