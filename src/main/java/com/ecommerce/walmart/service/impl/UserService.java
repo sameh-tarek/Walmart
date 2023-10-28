@@ -2,19 +2,20 @@ package com.ecommerce.walmart.service.impl;
 
 import com.ecommerce.walmart.Entity.User;
 import com.ecommerce.walmart.Entity.VerificationToken;
+import com.ecommerce.walmart.dto.userDto;
+import com.ecommerce.walmart.exception.AppException;
 import com.ecommerce.walmart.exception.UserAlreadyExistsException;
-import com.ecommerce.walmart.model.RegistrationRequest;
+import com.ecommerce.walmart.mapper.UserMapper;
 import com.ecommerce.walmart.repository.UserRepository;
 import com.ecommerce.walmart.repository.VerificationTokenRepository;
 import com.ecommerce.walmart.service.IUserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -22,31 +23,31 @@ public class UserService implements IUserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final VerificationTokenRepository tokenRepository;
+    private final UserMapper userMapper;
 
     @Override
-    public List<User> getUsers() {
-        return userRepository.findAll();
+    public List<userDto> getUsers() {
+        return userMapper.toUserDtos(userRepository.findAll());
     }
 
     @Override
-    public User registerUser(RegistrationRequest request) {
-        Optional<User> user = this.findByEmail(request.email());
-        if (user.isPresent()){
+    public User registerUser(userDto request) {
+        boolean userExist = userRepository.existsByEmail(request.getEmail());
+        if (userExist) {
             throw new UserAlreadyExistsException(
-                    "User with email "+request.email() + " already exists");
+                    "User with email "+request.getEmail() + " already exists");
         }
-        var newUser = new User();
-        newUser.setFirstName(request.firstName());
-        newUser.setLastName(request.lastName());
-        newUser.setEmail(request.email());
-        newUser.setPassword(passwordEncoder.encode(request.password()));
-        newUser.setRole(request.role());
+        request.setPassword(passwordEncoder.encode(request.getPassword()));
+        var newUser = userMapper.toUser(request);
         return userRepository.save(newUser);
     }
 
     @Override
-    public Optional<User> findByEmail(String email) {
-        return userRepository.findByEmail(email);
+    public userDto findByEmail(String email) {
+        User user = userRepository.findByEmail(email).orElseThrow(
+                () -> new AppException("User not found", HttpStatus.NOT_FOUND)
+        );
+        return userMapper.toUserDto(user);
     }
 
     @Override
