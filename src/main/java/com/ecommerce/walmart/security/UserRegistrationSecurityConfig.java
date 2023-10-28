@@ -24,7 +24,7 @@ public class UserRegistrationSecurityConfig {
         return http.cors()
                 .and().csrf().disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/register/**")
+                .requestMatchers("/auth/**", "/swagger-ui/**")
                 .permitAll()
                 .and().authorizeHttpRequests()
                 .requestMatchers("/users/**")
