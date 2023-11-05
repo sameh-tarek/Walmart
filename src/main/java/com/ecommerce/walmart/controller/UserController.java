@@ -1,6 +1,7 @@
 package com.ecommerce.walmart.controller;
 
 import com.ecommerce.walmart.dto.userDto;
+import com.ecommerce.walmart.service.UserService;
 import com.ecommerce.walmart.service.impl.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,10 +14,10 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/users")
 public class UserController {
-    private final UserServiceImpl userServiceImpl;
+    private final UserService userService;
 
     @GetMapping
     public List<userDto> getUsers(){
-        return userServiceImpl.getUsers();
+        return userService.getUsers();
     }
 }

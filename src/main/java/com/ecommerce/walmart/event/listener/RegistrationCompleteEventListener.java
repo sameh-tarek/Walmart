@@ -2,6 +2,7 @@ package com.ecommerce.walmart.event.listener;
 
 import com.ecommerce.walmart.Entity.User;
 import com.ecommerce.walmart.event.RegistrationCompleteEvent;
+import com.ecommerce.walmart.service.UserService;
 import com.ecommerce.walmart.service.impl.UserServiceImpl;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
@@ -19,7 +20,7 @@ import java.util.UUID;
 @Component
 @RequiredArgsConstructor
 public class RegistrationCompleteEventListener implements ApplicationListener<RegistrationCompleteEvent> {
-    private final UserServiceImpl userServiceImpl;
+    private final UserService userService;
 
     private final JavaMailSender mailSender;
     private User theUser;
@@ -30,7 +31,7 @@ public class RegistrationCompleteEventListener implements ApplicationListener<Re
         //2. Create a verification token for the user
         String verificationToken = UUID.randomUUID().toString();
         //3. Save the verification token for the user
-        userServiceImpl.saveUserVerificationToken(theUser, verificationToken);
+        userService.saveUserVerificationToken(theUser, verificationToken);
         //4 Build the verification url to be sent to the user
         String url = event.getApplicationUrl()+"/auth/register/verifyEmail?token="+verificationToken;
         //5. Send the email.
