@@ -1,6 +1,7 @@
-package com.ecommerce.walmart.security;
+package com.ecommerce.walmart.security.user;
 
 import com.ecommerce.walmart.repository.UserRepository;
+import com.ecommerce.walmart.security.user.UserDetails;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;

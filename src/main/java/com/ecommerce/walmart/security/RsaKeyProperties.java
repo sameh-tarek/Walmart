@@ -1,4 +1,4 @@
-package com.sameh.playwithjwt.Security;
+package com.ecommerce.walmart.security;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 

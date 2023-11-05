@@ -5,9 +5,9 @@ import com.ecommerce.walmart.Entity.VerificationToken;
 import com.ecommerce.walmart.dto.userDto;
 import com.ecommerce.walmart.event.RegistrationCompleteEvent;
 import com.ecommerce.walmart.event.listener.RegistrationCompleteEventListener;
-import com.ecommerce.walmart.model.ServerResponse;
+import com.ecommerce.walmart.model.server.ServerResponse;
 import com.ecommerce.walmart.repository.VerificationTokenRepository;
-import com.ecommerce.walmart.service.impl.UserService;
+import com.ecommerce.walmart.service.impl.UserServiceImpl;
 import jakarta.mail.MessagingException;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
@@ -25,7 +25,7 @@ import java.io.UnsupportedEncodingException;
 @RequestMapping("/auth/register")
 public class RegistrationController {
 
-    private final UserService userService;
+    private final UserServiceImpl userServiceImpl;
     private final ApplicationEventPublisher publisher;
     private final VerificationTokenRepository tokenRepository;
     private final RegistrationCompleteEventListener eventListener;
@@ -33,7 +33,7 @@ public class RegistrationController {
 
     @PostMapping
     public ResponseEntity<?> registerUser(@RequestBody userDto registrationRequest, final HttpServletRequest request){
-        User user = userService.registerUser(registrationRequest);
+        User user = userServiceImpl.registerUser(registrationRequest);
         publisher.publishEvent(new RegistrationCompleteEvent(user, applicationUrl(request)));
         return ResponseEntity.ok(
                 new ServerResponse("Success! Please, check your email for to complete your registration", HttpStatus.OK.value())
@@ -49,7 +49,7 @@ public class RegistrationController {
                     new ServerResponse("This account has already been verified, please, login.", HttpStatus.BAD_REQUEST.value())
             );
         }
-        String verificationResult = userService.validateToken(token);
+        String verificationResult = userServiceImpl.validateToken(token);
         if (verificationResult.equalsIgnoreCase("valid")){
             return ResponseEntity.ok(
                     new ServerResponse("Email verified successfully. Now you can login to your account", HttpStatus.OK.value())
@@ -64,7 +64,7 @@ public class RegistrationController {
             @RequestParam("token") String oldToken, HttpServletRequest request)
             throws MessagingException, UnsupportedEncodingException {
 
-        VerificationToken verificationToken = userService.generateNewVerificationToken(oldToken);
+        VerificationToken verificationToken = userServiceImpl.generateNewVerificationToken(oldToken);
         User theUser = verificationToken.getUser();
         resendVerificationTokenEmail(theUser, applicationUrl(request), verificationToken);
 

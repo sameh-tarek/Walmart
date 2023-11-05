@@ -1,4 +1,4 @@
-package com.ecommerce.walmart.model;
+package com.ecommerce.walmart.model.registration;
 
 import com.ecommerce.walmart.Entity.enums.Role;
 

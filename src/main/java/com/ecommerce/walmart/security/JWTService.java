@@ -1,4 +1,4 @@
-package com.ecommerce.walmart.security.user;
+package com.ecommerce.walmart.security;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;

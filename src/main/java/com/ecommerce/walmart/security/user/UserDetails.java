@@ -1,4 +1,4 @@
-package com.ecommerce.walmart.security;
+package com.ecommerce.walmart.security.user;
 
 import com.ecommerce.walmart.Entity.User;
 import lombok.Data;
