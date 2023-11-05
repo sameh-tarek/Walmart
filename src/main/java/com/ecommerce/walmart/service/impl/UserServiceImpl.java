@@ -8,7 +8,7 @@ import com.ecommerce.walmart.exception.UserAlreadyExistsException;
 import com.ecommerce.walmart.mapper.UserMapper;
 import com.ecommerce.walmart.repository.UserRepository;
 import com.ecommerce.walmart.repository.VerificationTokenRepository;
-import com.ecommerce.walmart.service.IUserService;
+import com.ecommerce.walmart.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -20,7 +20,7 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
-public class UserService implements IUserService {
+public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final VerificationTokenRepository tokenRepository;

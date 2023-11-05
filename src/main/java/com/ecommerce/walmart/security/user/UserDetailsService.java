@@ -1,21 +1,20 @@
-package com.ecommerce.walmart.security;
+package com.ecommerce.walmart.security.user;
 
 import com.ecommerce.walmart.repository.UserRepository;
+import com.ecommerce.walmart.security.user.UserDetails;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class UserRegistrationDetailsService implements UserDetailsService {
+public class UserDetailsService implements org.springframework.security.core.userdetails.UserDetailsService {
     private final UserRepository userRepository;
 
     @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+    public org.springframework.security.core.userdetails.UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         return userRepository.findByEmail(email)
-                .map(UserRegistrationDetails::new)
+                .map(UserDetails::new)
                 .orElseThrow(()-> new UsernameNotFoundException("User not found"));
     }
 }

@@ -2,7 +2,8 @@ package com.ecommerce.walmart.event.listener;
 
 import com.ecommerce.walmart.Entity.User;
 import com.ecommerce.walmart.event.RegistrationCompleteEvent;
-import com.ecommerce.walmart.service.impl.UserService;
+import com.ecommerce.walmart.service.UserService;
+import com.ecommerce.walmart.service.impl.UserServiceImpl;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;

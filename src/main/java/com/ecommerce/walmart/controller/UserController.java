@@ -1,8 +1,8 @@
 package com.ecommerce.walmart.controller;
 
-import com.ecommerce.walmart.Entity.User;
 import com.ecommerce.walmart.dto.userDto;
-import com.ecommerce.walmart.service.impl.UserService;
+import com.ecommerce.walmart.service.UserService;
+import com.ecommerce.walmart.service.impl.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

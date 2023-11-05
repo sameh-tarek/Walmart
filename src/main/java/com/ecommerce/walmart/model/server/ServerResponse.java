@@ -1,4 +1,4 @@
-package com.ecommerce.walmart.model;
+package com.ecommerce.walmart.model.server;
 
 import lombok.Data;
 

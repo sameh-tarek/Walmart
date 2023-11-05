@@ -6,9 +6,8 @@ import com.ecommerce.walmart.Entity.VerificationToken;
 import com.ecommerce.walmart.dto.userDto;
 
 import java.util.List;
-import java.util.Optional;
 
-public interface IUserService {
+public interface UserService {
     List<userDto> getUsers();
     User registerUser(userDto request);
     userDto findByEmail(String email);
