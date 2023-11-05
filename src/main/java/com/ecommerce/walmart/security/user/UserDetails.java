@@ -4,20 +4,19 @@ import com.ecommerce.walmart.Entity.User;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
 
 @Data
-public class UserRegistrationDetails implements UserDetails {
+public class UserDetails implements org.springframework.security.core.userdetails.UserDetails {
 
     private String userName;
     private String password;
     private boolean isEnabled;
     private List<GrantedAuthority> authorities;
 
-    public UserRegistrationDetails(User user) {
+    public UserDetails(User user) {
         this.userName = user.getEmail();
         this.password = user.getPassword();
         this.isEnabled = user.isEnabled();
