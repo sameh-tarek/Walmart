@@ -29,3 +29,59 @@ openssl pkcs8 -topk8 -inform PEM -outform PEM -nocrypt -in keypair.pem -out priv
 4- to send Email Verification you should add your Email and Password in application.yml file
 
 4- Build the project to resolve dependencies.
+
+# Details about the project
+
+This project is designed to showcase a simplified online shopping experience with basic admin tools.
+
+## User Features:
+
+### Account:
+- **Sign Up:**
+  - Create a new account easily.
+- **Log In:**
+  - Log in with your username and password.
+
+### Shopping:
+- **Browse and Buy:**
+  - Explore products and add them to your cart.
+  - Complete your purchase with a simple checkout.
+
+### User Profile:
+- **Personalization:**
+  - Edit your profile details.
+
+### Admin Features:
+
+### Product Management:
+- **Manage Products:**
+  - Add, edit, or remove products easily.
+
+### Order Management:
+- **View Orders:**
+  - See a list of customer orders.
+
+### User Management:
+- **Manage Users:**
+  - View user accounts.
+
+### Inventory:
+- **Stock Monitoring:**
+  - Keep track of product stock levels.
+
+### Basic Analytics:
+- **Sales Reports:**
+  - View basic sales reports.
+
+## Expected Features (Initial Release):
+
+The initial release of the Walmart Ecommerce Project includes:
+- **User Registration and Authentication:**
+  - Allow users to sign up and log in.
+- **Product Browsing and Shopping Cart:**
+  - Let users explore products and make purchases.
+- **User Profile Management:**
+  - Enable users to edit their profile details.
+- **Basic Admin Features:**
+  - Allow admin to manage products, view orders, manage users, monitor inventory, and access basic sales reports.
+
